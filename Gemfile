@@ -9,5 +9,3 @@ def gem_available?(name)
         false
     end
 end
-
-gem 'mongoid' if gem_available?('mongoid')

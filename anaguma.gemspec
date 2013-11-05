@@ -25,10 +25,12 @@ Gem::Specification.new do |gem|
     gem.rubygems_version = "1.8"
     gem.add_dependency("treetop", ">= 1.4.0")
     gem.add_dependency("polyglot")
+
+    gem.add_development_dependency('mongoid', "~> 3.1.5")
     gem.add_development_dependency("rspec", ">= 2.12.0")
     gem.add_development_dependency("rspec-core", ">= 2.12.0")
     gem.add_development_dependency("simplecov", ">= 0.7")
     gem.add_development_dependency("fuubar")
-    gem.add_development_dependency("activerecord-nulldb-adapter")
+    gem.add_development_dependency("activerecord-nulldb-adapter", "~> 0.2.3")
     gem.add_development_dependency("sqlite3")
 end
