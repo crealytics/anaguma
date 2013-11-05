@@ -77,7 +77,8 @@ module Anaguma
               ne: '!=',
               notlike: '!=',
               eq:'=',
-              like:'='
+              like:'=',
+              ilike: 'ilike'
             }
 
             def compare(term = nil, options = {})
@@ -85,6 +86,7 @@ module Anaguma
               field = options[:field] || term.field
               value = options[:value] || term.value
               operator = (options[:operator] || term.operator)
+
               operator or raise(ArgumentError,
                 "Cannot match term with operator #{term.operator}")
 

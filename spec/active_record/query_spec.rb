@@ -55,6 +55,13 @@ describe Anaguma::ActiveRecord::Query do
 
       it_behaves_like "a monad", on: :compare
 
+      it 'ilike' do
+        term = double(field: 'name', operator:'ilike', value:'%bil%')
+        where_clauses = query.compare(term).clause(:where)
+        expect(where_clauses.count).to eq(1)
+        expect(where_clauses.first).to match(clause('name','ilike','%bil%'))
+      end
+
       it 'eq' do
         term = double(field: 'name', operator:'eq', value:'billy')
         where_clauses = query.compare(term).clause(:where)
