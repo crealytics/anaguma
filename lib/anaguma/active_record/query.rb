@@ -16,8 +16,7 @@ module Anaguma
                     @relation = scope
                     @_format = format || :instances
                 else
-                    @relation = ::ActiveRecord::Relation.new(scope,
-                        scope.arel_table)
+                    @relation = scope.scoped
                     @_format = format || :instances
                 end
             end
