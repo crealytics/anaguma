@@ -2,6 +2,7 @@ require 'timeout'
 require 'benchmark'
 require 'thread'
 require 'simplecov'
+require 'pry'
 
 SimpleCov.start { add_filter "spec/" }
 
