@@ -4,6 +4,5 @@
 .rbenv-version
 .rspec
 Gemfile.lock
-tmp/
 doc/
 coverage/
