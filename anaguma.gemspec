@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
         Surprisingly usable search for ActiveRecord, Sequel, MongoDB, and more.
     END
     gem.summary = (<<-END).strip.gsub(/\s+/, ' ')
-        Anaguma provides tools for compiling frontend search strings into 
+        Anaguma provides tools for compiling frontend search strings into
         into backend queries.
     END
     gem.email = "don@madwombat.com"
@@ -27,8 +27,8 @@ Gem::Specification.new do |gem|
     gem.add_dependency("polyglot")
 
     gem.add_development_dependency('mongoid', "~> 3.1.5")
-    gem.add_development_dependency("rspec", ">= 2.12.0")
-    gem.add_development_dependency("rspec-core", ">= 2.12.0")
+    gem.add_development_dependency("rspec", "= 2.12.0")
+    gem.add_development_dependency("rspec-core", "= 2.12.0")
     gem.add_development_dependency("simplecov", ">= 0.7")
     gem.add_development_dependency("fuubar")
     gem.add_development_dependency("activerecord-nulldb-adapter", "~> 0.2.3")
