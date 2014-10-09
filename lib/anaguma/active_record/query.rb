@@ -115,7 +115,7 @@ module Anaguma
 
             def clause(key)
                 case(key.to_s)
-                when "from", "limit", "offset"
+                when "from", "limit", "offset", "uniq"
                     @relation.send("#{key}_value")
                 when "select", "joins", "includes", "group", "order"
                     @relation.send("#{key}_values")
@@ -130,6 +130,7 @@ module Anaguma
 
             def merge(predicate, *others)
                 clauses = Hash.new { |h, k| h[k] = Array.new }
+                clauses[:uniq] = false
                 others.flatten.unshift(self).each do |query|
                     merge_unpredicated_clauses(clauses, query)
                     combined_where_clause_for_query = combine_and_wrap(
@@ -215,6 +216,7 @@ module Anaguma
                 result[:from] = query.clause(:from)
                 result[:limit] = query.clause(:limit)
                 result[:offset] = query.clause(:offset)
+                result[:uniq] ||= query.clause(:uniq)
                 result
             end
 
@@ -222,7 +224,7 @@ module Anaguma
                 relation = ::ActiveRecord::Relation.new(@relation.klass,
                     @relation.table)
                 builder = Builder.new(relation, %w(select from joins includes
-                    where having group order limit offset))
+                    where having group order limit offset uniq))
                 builder.select(clauses[:select].uniq) \
                     unless clauses[:select].empty?
                 builder.from(clauses[:from]) \
@@ -243,6 +245,7 @@ module Anaguma
                     unless clauses[:limit].nil?
                 builder.offset(clauses[:offset]) \
                     unless clauses[:offset].nil?
+                builder.uniq(clauses[:uniq])
                 builder.result
             end
 

@@ -74,6 +74,22 @@ describe Anaguma::ActiveRecord::Searcher do
 
     end
 
+    context 'when based on a distinct selection' do
+
+      let(:searcher) { ActiveRecordTesting::BadgerSearcher.new(Badger.select(:eq).uniq) }
+
+      it 'conserves distinctness with OR conditions' do
+        result = searcher.search('nickname:billy OR nickname:bobby').instances
+        expect(result.size).to eq 1
+      end
+
+      it 'conserves distinctness with AND conditions' do
+        result = searcher.search('eq:12 AND iq>5').instances
+        expect(result.size).to eq 1
+      end
+
+    end
+
     context 'matching on virtual fields' do
       it_searches('called:bubba') do |b|
         b.name=='bubba' || b.nickname == 'bubba'
